@@ -22,9 +22,10 @@ PipeFactory.prototype.generatePipes = function() {
         var gap = getRandomInt(factory.gap, factory.maxGap);
         var height = getRandomInt(0, factory.maxGap);
 
-        var pipe = new Pipe(factory.canvas);
+        var pipe = new Pipe('images/pipe1.png', 'images/pipe2.png', factory.canvas);
         pipe.gap = gap;
         pipe.h = height;
+        // pipe.src = 'images/pipe.png'
         factory.pipes.push(pipe);
     }, factory.freq);
 }
