@@ -46,7 +46,7 @@ Bird.prototype.draw = function() {
             bird.vy = 0;
         }
 
-        bird.context.drawImage(bird.img, bird.frame * 120, 0, 115, 115, bird.x, bird.y, bird.w, bird.h);
+        bird.context.drawImage(bird.img, bird.frame * 115, 10, 115, 115, bird.x, bird.y, bird.w, bird.h);
         bird.frame++;
         bird.frame %= 3;
     }
