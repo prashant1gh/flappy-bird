@@ -140,8 +140,18 @@ FlappyBird.prototype.drawInitialScreen = function() {
 
 
     game.context.fillStyle = 'white';
+
     game.context.font = '36px arial';
-    game.context.fillText('Click to start', game.canvas.width / 2 - 100, game.canvas.height / 2);
+    game.context.fillText('How to play', game.canvas.width / 2 - 150, game.canvas.height / 2 - 200);
+
+    game.context.font = '25px arial';
+    game.context.fillText('1. Click on screen to adjust the movement of bird.', game.canvas.width / 2 - 150, game.canvas.height / 2 - 160);
+    game.context.fillText('2. Avoid pipes and keep flying.', game.canvas.width / 2 - 150, game.canvas.height / 2 - 120);
+    game.context.fillText('3. Score is based on flying duration.', game.canvas.width / 2 - 150, game.canvas.height / 2 - 80);
+
+
+    game.context.font = '36px arial';
+    game.context.fillText('Click to start', game.canvas.width / 2 - 150, game.canvas.height / 2);
 
 }
 
