@@ -1,6 +1,6 @@
 # Flappy Bird
 
-![alt text](https://github.com/prashant1gh/image-carousel/blob/gh-pages/images/Screenshot1.png?raw=true)
+![alt text](https://github.com/prashant1gh/flappy-bird/blob/gh-pages/images/screenshot%20flappy%20bird.png?raw=true)
 
 ## how to play
 
