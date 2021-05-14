@@ -73,6 +73,7 @@ FlappyBird.prototype.runGameLoop = function() {
 
             break;
         case GAME_OVER:
+            game.gameScore.CheckHighscore();
             game.drawGameOverScreen();
             break;
     }
@@ -92,11 +93,11 @@ FlappyBird.prototype.bindEvents = function() {
                 game.currentState = GAME_PLAYING;
                 game.pipeFactory.generatePipes();
 
+
                 break;
 
             case GAME_PLAYING:
                 game.bird.vy = -1 * game.velocity;
-
                 break;
         }
     });
@@ -175,11 +176,12 @@ FlappyBird.prototype.checkCollisions = function() {
             game.currentState = GAME_OVER;
         }
     }
+
 }
 
 FlappyBird.prototype.isCollided = function(bird, pipe) {
     var game = this;
-    var isCollided = true;
+    var isNotCollided = true;
 
     var birdTop = game.bird.y;
     var birdBottom = game.bird.y + game.bird.h;
@@ -194,10 +196,10 @@ FlappyBird.prototype.isCollided = function(bird, pipe) {
     if ((birdBottom < pipeTop && birdTop > pipeBottom) ||
         (birdLeft > pipeRight) ||
         (birdRight < pipeLeft)) {
-        isCollided = false;
-    }
+        isNotCollided = false;
 
-    return isCollided;
+    }
+    return isNotCollided;
 
 }
 
@@ -221,6 +223,7 @@ FlappyBird.prototype.RemovePassedPipes = function() {
     for (var i = 0; i < pipes.length; i++) {
         if (pipes[i].x + pipes[i].w < 0) {
             pipes.shift();
+            game.gameScore.score++;
         }
     }
 }
@@ -256,13 +259,20 @@ FlappyBird.prototype.drawGameOverScreen = function() {
     game.context.fillStyle = 'white';
 
     game.context.font = '50px arial';
-    game.context.fillText('Your score : ' + game.gameScore.score, game.canvas.width / 2 - 100, game.canvas.height / 2 - 100)
+    game.context.fillText('Your score : ' + game.gameScore.score, game.canvas.width / 2 - 150, game.canvas.height / 2 - 100)
+
+    var highscore = localStorage.getItem('highscore');
+    if (!highscore) {
+        highscore = 0;
+    }
+
+    game.context.fillText('High Score :' + highscore, game.canvas.width / 2 - 150, game.canvas.height / 2 - 150);
 
 
     game.context.font = '36px arial';
-    game.context.fillText('Game Over :(', game.canvas.width / 2 - 100, game.canvas.height / 2)
+    game.context.fillText('Game Over :(', game.canvas.width / 2 - 150, game.canvas.height / 2)
 
     game.context.font = '30px arial';
-    game.context.fillText('Press R to restart game.', game.canvas.width / 2 - 100, game.canvas.height / 2 + 50)
+    game.context.fillText('Press R to restart game.', game.canvas.width / 2 - 150, game.canvas.height / 2 + 50)
 
 }

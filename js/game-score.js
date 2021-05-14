@@ -12,6 +12,9 @@ function GameScore(canvas) {
     gameScore.x = 0;
     gameScore.y = 0;
 
+    gameScore.highscore = 0;
+
+
 
 }
 
@@ -22,6 +25,31 @@ GameScore.prototype.draw = function() {
 
     gameScore.score = parseFloat((draw - gameScore.start) / 1000).toFixed(0);
 
-    gameScore.context.font = '45px verdana';
-    gameScore.context.fillText(gameScore.score, gameScore.x, gameScore.y);
+    var highscore = localStorage.getItem('highscore');
+    if (!highscore) {
+        highscore = 0;
+    }
+
+    gameScore.context.font = '30px verdana';
+    gameScore.context.fillText('High Score :' + highscore, gameScore.x - 150, gameScore.y + 50);
+
+
+    gameScore.context.font = '30px verdana';
+    gameScore.context.fillText('Current Score :' + gameScore.score, gameScore.x - 150, gameScore.y);
+
+}
+
+GameScore.prototype.CheckHighscore = function() {
+    var gameScore = this;
+    var highscore = localStorage.getItem('highscore');
+
+    if (highscore) {
+
+        if (gameScore.score > parseInt(highscore)) {
+            localStorage.setItem('highscore', gameScore.score);
+        }
+    } else {
+        localStorage.setItem('highscore', 0);
+    }
+
 }
