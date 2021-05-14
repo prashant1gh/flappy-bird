@@ -90,6 +90,7 @@ FlappyBird.prototype.bindEvents = function() {
         switch (game.currentState) {
 
             case INITIAL:
+                game.reset();
                 game.currentState = GAME_PLAYING;
                 game.pipeFactory.generatePipes();
 
@@ -223,7 +224,6 @@ FlappyBird.prototype.RemovePassedPipes = function() {
     for (var i = 0; i < pipes.length; i++) {
         if (pipes[i].x + pipes[i].w < 0) {
             pipes.shift();
-            game.gameScore.score++;
         }
     }
 }
