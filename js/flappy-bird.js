@@ -153,11 +153,12 @@ FlappyBird.prototype.drawGamePlayingScreen = function() {
     //animate background    
     game.animateBackground();
 
-    //draw score
-    game.gameScore.draw();
 
     //draw pipes
     game.drawPipes();
+
+    //draw score
+    game.gameScore.draw();
 
     //draw bird
     game.bird.draw();
